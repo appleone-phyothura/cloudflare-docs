@@ -28,7 +28,7 @@ To recap the basics of HTML5 forms, a `form` element generally contains an `acti
 
 ```html
 <form action="/new_submission">
-  <input type="text" name="first_name" id="first_name"></input>
+  <input type="text" name="first_name" id="first_name"/>
   <button type="submit">Submit</button>
 </form>
 ```
@@ -39,21 +39,21 @@ If you're unfamiliar with HTML5 forms, the Mozilla Developer Network's ["Web For
 
 </Aside>
 
-To pass data _inside_ of the form, you can use `input` tags. `input` tags have a `type`, which specifies how the `input` should render, and what kind of data it contains. When an `input` has a `name` attribute, the `form` will submit that data to the provided `action` URL, matching that `name` attribute. 
+To pass data _inside_ of the form, you can use `<input>` elements, which have a `type` attribute that specifies what kind of data it contains and how the data should be displayed. When an `<input>` has a `name` attribute, its `<form>` parent element will use that `name` attribute when submitting the entire form to its provided `action` URL destination.
 
 <Aside>
 
-The `id` attribute, while not required for the `input` to be submitted as part of the `form`, is often set alongside the `name` attribute to enable styling via CSS.
+The `id` attribute, while not required for the `input` to be submitted as part of the `form`, is often set alongside the `name` attribute for CSS styling and for its related `<label for="">` counterpart.
 
 </Aside>
 
-For example, if I fill in the `first_name` `input` with the text "Kristian", submitting the `form` via the "Submit" `button` will submit data to the URL `/new_submission` with the data `first_name=Hello`.
+In the above example, if I enter "Kristian" in the `first_name` text input, clicking the "Submit" button will submit the `<form>`, sending the `first_name=Kristian` payload string to the `/new_submission` URL destination.
 
-The `form` used in the example front-end UI builds on these basics, adding some CSS classes via Tailwind CSS, and adding the fields needed for a "Contact"-style form: "First name", "Last name", "Email", "Phone", "Subject", and "Message".
+The actual `<form>` we'll use for the rest of this tutorial, pictured below, builds on these basics, adding some CSS classes via Tailwind CSS. It also adds all the fields necessary for a "Contact"-style form: "First name", "Last name", "Email", "Phone", "Subject", and "Message".
 
 ![The completed form in the front-end user interface](./ui.png)
 
-The code for this form can be [found on GitHub](https://github.com/signalnerve/workers-airtable-form/blob/main/src/Form.js). Of particular note is the `form` action, which has a placeholder for our serverless function URL, and the `method` attribute, which tells the form to submit using an [HTTP POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST). 
+The code for this form can be [found on GitHub](https://github.com/signalnerve/workers-airtable-form/blob/main/src/Form.js). Of particular note is the form's `action` attribute, which has a placeholder for our serverless function URL, and its `method` attribute, which tells the form to submit using an [HTTP POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST). 
 
 Some sample code is provided as an example below, including the first `input`, to show that the `name` is set to the value `first_name`, as well as the standard `button` with `type="submit"`:
 
@@ -78,7 +78,7 @@ Some sample code is provided as an example below, including the first `input`, t
 
   <!-- Rest of form -->
 
-  <button type="submit" className="...">
+  <button type="submit" class="...">
     Submit
   </button>
 </form>
@@ -342,7 +342,7 @@ Once you've deployed your new form (we recommend [Cloudflare Pages](https://page
 
 With that, you've created a Workers serverless function that can accept form submissions, and persist them to Airtable. Along the way, we've learned how to parse form data, set up environment variables, and use the `fetch` API to make requests to external services outside of our Workers function.
 
-You can find the source for this project—both the front-end UI, as well as the serverless function that communicates with Airtable—[on GitHub](https://github.com/signalnerve/workers-airtable-form).
+You can find the source for this project—both the front-end UI and the serverless function that communicates with Airtable—[on GitHub](https://github.com/signalnerve/workers-airtable-form).
 
 See what else you can build with Workers with some of our other tutorials below!
 
