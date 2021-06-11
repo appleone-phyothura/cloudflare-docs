@@ -1,6 +1,6 @@
 ---
 title: Welcome
-order: 0
+order: 1
 ---
 
 # Cloudflare registrar documentation
